@@ -40,7 +40,7 @@
 ## Требования для запуска
 - Установленный Docker
 
-### Запуск через Docker
+## Запуск через Docker
 
 ### Клонирование репозитория
 git clone https://github.com/egorzhirkov146-ctrl/cpp-lab-docker.git
