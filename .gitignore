@@ -1,0 +1,13 @@
+*.o
+my_program
+*.exe
+*.out
+.Dockerfile.*
+*.swp
+*.swo
+*.swm
+*.swn
+build/
+cmake-build-debug/
+.DS_Store
+Thumbs.db
