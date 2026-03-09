@@ -51,3 +51,5 @@ docker build -t lab .
 
 ### Запуск программы
 docker run --rm lab
+## Автор
+egorzhirkov146-ctrl
