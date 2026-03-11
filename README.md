@@ -44,6 +44,7 @@
 
 ### Клонирование репозитория
 git clone https://github.com/egorzhirkov146-ctrl/cpp-lab-docker.git
+
 cd cpp-lab-docker
 
 ### Сборка Docker образа
