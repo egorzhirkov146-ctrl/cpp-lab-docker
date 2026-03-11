@@ -2,44 +2,140 @@
 #include "stack.h"
 #include "queue.h"
 #include <iostream>
-
+using namespace std;
 int main() {
-    std::cout << "=== Тестирование DynamicArray ===" << std::endl;
-    DynamicArray arr;
-    
-    arr.push_back(10.5);
-    arr.push_back(20.3);
-    arr.push_back(5.7);
-    arr.push_front(1.2);
-    
-    std::cout << "Массив: ";
-    arr.printData();
-    
-    std::cout << "Максимум: " << arr.max() << std::endl;
-    std::cout << "Минимум: " << arr.min() << std::endl;
-    std::cout << "Сумма: " << arr() << std::endl;
-    
-    std::cout << "\n=== Тестирование Stack ===" << std::endl;
-    Stack<int> stack(5);
-    
-    for(int i = 1; i <= 3; i++) {
-        stack.push(i * 10);
-        std::cout << "Добавлено: " << i*10 << std::endl;
-    }
-    
-    std::cout << "Верхний элемент: " << stack.top() << std::endl;
-    std::cout << "Извлекаем: " << stack.pop() << std::endl;
-    
-    std::cout << "\n=== Тестирование Queue ===" << std::endl;
-    Queue<float> queue(5);
-    
-    queue.enqueue(1.1);
-    queue.enqueue(2.2);
-    queue.enqueue(3.3);
-    
-    std::cout << "Первый в очереди: " << queue.front() << std::endl;
-    std::cout << "Извлекаем: " << queue.dequeue() << std::endl;
-    std::cout << "Теперь первый: " << queue.front() << std::endl;
-    
+    int choice;
+    do {
+        cout << "\n=== ГЛАВНОЕ МЕНЮ ===\n";
+        cout << "1. Работа с массивом\n";
+        cout << "2. Работа со стеком\n";
+        cout << "3. Работа с очередью\n";
+        cout << "0. Выход\n";
+        cout << "Выберите: ";
+        cin >> choice;
+        if (choice == 1) {
+            DynamicArray arr;
+            int arrChoice;
+            float val;
+            do {
+                cout << "\n--- МАССИВ ---\n";
+                cout << "Текущий массив: ";
+                arr.printData();
+                cout << "1. Добавить в конец\n";
+                cout << "2. Добавить в начало\n";
+                cout << "3. Удалить последний\n";
+                cout << "4. Найти максимум\n";
+                cout << "5. Найти минимум\n";
+                cout << "6. Сумма элементов\n";
+                cout << "0. Назад\n";
+                cout << "Выберите: ";
+                cin >> arrChoice;
+                switch(arrChoice) {
+                    case 1:
+                        cout << "Введите число: ";
+                        cin >> val;
+                        arr.push_back(val);
+                        break;
+                    case 2:
+                        cout << "Введите число: ";
+                        cin >> val;
+                        arr.push_front(val);
+                        break;
+                    case 3:
+                        arr.pop_back();
+                        cout << "Последний удален\n";
+                        break;
+                    case 4:
+                        if (!arr.isEmpty())
+                            cout << "Максимум: " << arr.max() << endl;
+                        else
+                            cout << "Массив пуст\n";
+                        break;
+                    case 5:
+                        if (!arr.isEmpty())
+                            cout << "Минимум: " << arr.min() << endl;
+                        else
+                            cout << "Массив пуст\n";
+                        break;
+                    case 6:
+                        cout << "Сумма: " << arr() << endl;
+                        break;
+                }
+            } while (arrChoice != 0);
+        }
+        else if (choice == 2) {
+            int size;
+            cout << "Введите размер стека: ";
+            cin >> size;
+            Stack<int> stack(size);
+            int stackChoice;
+            int val;
+            do {
+                cout << "\n--- СТЕК ---\n";
+                cout << "Размер: " << stack.size() << "/" << stack.getMaxSize() << endl;
+                cout << "1. Добавить (push)\n";
+                cout << "2. Извлечь (pop)\n";
+                cout << "3. Посмотреть верхний\n";
+                cout << "0. Назад\n";
+                cout << "Выберите: ";
+                cin >> stackChoice;
+                try {
+                    switch(stackChoice) {
+                        case 1:
+                            cout << "Введите число: ";
+                            cin >> val;
+                            stack.push(val);
+                            cout << "Добавлено\n";
+                            break;
+                        case 2:
+                            cout << "Извлечено: " << stack.pop() << endl;
+                            break;
+                        case 3:
+                            cout << "Верхний: " << stack.top() << endl;
+                            break;
+                    }
+                } catch (const exception& e) {
+                    cout << "Ошибка: " << e.what() << endl;
+                }
+            } while (stackChoice != 0);
+        }
+        else if (choice == 3) {
+            int size;
+            cout << "Введите размер очереди: ";
+            cin >> size;
+            Queue<float> queue(size);
+            int queueChoice;
+            float val;
+            do {
+                cout << "\n--- ОЧЕРЕДЬ ---\n";
+                cout << "Размер: " << queue.size() << "/" << queue.getMaxSize() << endl;
+                cout << "1. Добавить в конец\n";
+                cout << "2. Извлечь из начала\n";
+                cout << "3. Посмотреть первый\n";
+                cout << "0. Назад\n";
+                cout << "Выберите: ";
+                cin >> queueChoice;
+                try {
+                    switch(queueChoice) {
+                        case 1:
+                            cout << "Введите число: ";
+                            cin >> val;
+                            queue.enqueue(val);
+                            cout << "Добавлено\n";
+                            break;
+                        case 2:
+                            cout << "Извлечено: " << queue.dequeue() << endl;
+                            break;
+                        case 3:
+                            cout << "Первый: " << queue.front() << endl;
+                            break;
+                    }
+                } catch (const exception& e) {
+                    cout << "Ошибка: " << e.what() << endl;
+                }
+            } while (queueChoice != 0);
+        }
+    } while (choice != 0);
+    cout << "Программа завершена\n";
     return 0;
 }
